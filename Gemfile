@@ -8,11 +8,12 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'pg'
+gem 'bcrypt'
 
 group :development do
   gem 'thin'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'byebug'
+  gem 'spring'
 end
 
 group :development, :test do

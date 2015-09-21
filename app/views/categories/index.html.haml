@@ -4,7 +4,7 @@
     %header
       %h3= link_to category.title, category_path(category)
     .videos.row
-      - category.videos.each do |vid|
+      - category.recent_videos.each do |vid|
         .video.col-sm-2
           = link_to video_path(vid.id) do
             %img(src="/tmp/#{vid.url}")
