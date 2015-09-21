@@ -1,22 +1,25 @@
 %section#top-header.row
   %h1.col-md-2
-    = link_to "MyFLiX"
+    = link_to "MyFLiX", root_path
   %ul.col-md-4.clearfix
-    %li= link_to "Videos", home_path
+    %li= link_to "Videos", categories_path
     %li= link_to "My Queue"
     %li= link_to "People"
-  %form.col-md-5.navbar-form(action="")
+  = form_tag search_videos_path, method: 'get', class: "col-md-5" do
     .form-group
-      %input.form-control(type="text" placeholder="Search for videos here")
-    %button.btn.btn-default(type="submit") Search
+      = text_field_tag 'search'
+      %button.btn.btn-default(type="submit") Search
   #user_links.pull-right
-    %ul
-      %li.dropdown
-        %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
-          Welcome, Philip J. Fry
-          %b.caret
-        %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
-          %li
-            %a(href="#") Account
-            %a(href="#") Plan and Billing
-            %a(href="#") Sign Out
+    - if logged_in?
+      %ul
+        %li.dropdown
+          %a(href="#" id="dlabel" role="button" data-toggle="dropdown" class="dropdown-toggle" data-target="#")
+            = current_user.full_name
+            %b.caret
+          %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
+            %li
+              %a(href="#") Account
+              %a(href="#") Plan and Billing
+              = link_to "Sign out", logout_path, method: 'delete'
+    - else
+      = link_to "Sign in", login_path

@@ -8,11 +8,12 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'pg'
+gem 'bcrypt'
 
 group :development do
   gem 'thin'
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'byebug'
+  gem 'spring'
 end
 
 group :development, :test do
@@ -23,6 +24,7 @@ end
 
 group :test do
   gem 'database_cleaner', '1.2.0'
+  gem 'shoulda-matchers'
 end
 
 group :production do
