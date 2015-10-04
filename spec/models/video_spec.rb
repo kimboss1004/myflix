@@ -29,4 +29,46 @@ describe Video do
     end
   end
 
+  describe "recent_reviews" do
+    it "returns empty [] if there are no reviews" do
+      vid = Fabricate(:video)
+      expect(vid.recent_reviews).to eq([])
+    end
+    it "returns 1 review" do
+      vid = Fabricate(:video)
+      review = Fabricate(:review, video: vid)
+      expect(vid.recent_reviews).to eq([review])
+    end
+    it "returns multiple reviews ordered by created_at" do
+      vid = Fabricate(:video)
+      review1 = Fabricate(:review, video: vid) 
+      review2 = Fabricate(:review, video: vid) 
+      review3 = Fabricate(:review, video: vid)  
+      expect(vid.recent_reviews).to eq([review3, review2, review1])
+    end   
+  end
+
+  describe "average_rating" do
+    it "returns nil if there are no reviews" do
+      vid = Fabricate(:video)
+      expect(vid.average_rating).to eq(nil)
+    end
+    it "returns zero if average rating is zero" do
+      vid = Fabricate(:video)
+      review1 = Fabricate(:review, video: vid, rating: 0) 
+      review2 = Fabricate(:review, video: vid, rating: 0) 
+      review3 = Fabricate(:review, video: vid, rating: 0)
+      expect(vid.average_rating).to eq(0)
+    end
+    it "returns the average of all its ratings" do
+      vid = Fabricate(:video)
+      review1 = Fabricate(:review, video: vid, rating: 5) 
+      review2 = Fabricate(:review, video: vid, rating: 1) 
+      review3 = Fabricate(:review, video: vid, rating: 3)
+      expect(vid.average_rating).to eq(3)  
+    end
+  end
+
+
+
 end
