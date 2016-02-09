@@ -17,7 +17,7 @@ describe ReviewsController do
           session[:user_id] = Fabricate(:user).id
           vid = Fabricate(:video)
           post :create, video_id: vid.id, review: Fabricate.attributes_for(:review)
-          expect(assigns(:video)).to eq(vid)
+          expect(assigns(:review)).to eq(Review.first)
         end
         it 'sets @review associated to @video' do
           session[:user_id] = Fabricate(:user).id

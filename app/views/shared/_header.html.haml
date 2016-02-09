@@ -3,8 +3,8 @@
     = link_to "MyFLiX", root_path
   %ul.col-md-4.clearfix
     %li= link_to "Videos", categories_path
-    %li= link_to "My Queue"
-    %li= link_to "People"
+    %li= link_to "My Queue", queue_items_path
+    %li= link_to "People", people_user_path(current_user)
   = form_tag search_videos_path, method: 'get', class: "col-md-5" do
     .form-group
       = text_field_tag 'search'
@@ -18,7 +18,7 @@
             %b.caret
           %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
             %li
-              %a(href="#") Account
+              = link_to "Profile", user_path(current_user)
               %a(href="#") Plan and Billing
               = link_to "Sign out", logout_path, method: 'delete'
     - else

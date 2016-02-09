@@ -1,6 +1,8 @@
 class Video < ActiveRecord::Base
   belongs_to :category
+  belongs_to :user
   has_many :reviews
+  has_many :queue_items
 
   validates :title, presence: true
   validates :description, presence: true

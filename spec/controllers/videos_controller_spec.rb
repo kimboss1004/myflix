@@ -21,15 +21,6 @@ describe VideosController do
       get :show, id: vid.id
       expect(assigns(:review)).to be_instance_of(Review)
     end
-
-    it "sets @reviews of @video.recent_reviews if user authenticated" do
-      session[:user_id] = Fabricate(:user).id
-      vid = Fabricate(:video)
-      review1 = Fabricate(:review, video: vid)
-      review2 = Fabricate(:review, video: vid)
-      get :show, id: vid.id
-      expect(assigns(:reviews)).to eq([review2, review1])
-    end
   end
 
   describe "GET search" do
